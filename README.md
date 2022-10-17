@@ -159,3 +159,61 @@ export const Greet = (props: GreetProps) => {
 }
 
 ```
+
+### Event Props
+
+```js
+//App.jsx
+import React from 'react'
+import Button from './components/Button'
+import Input from './components/Input'
+
+export default function App() {
+  return (
+    <div>
+      <Button
+        handleClick={(event, id) => {
+          console.log(event, id)
+        }}
+      />
+      <Input value="" HandleChange={(event) => console.log(event)} />
+    </div>
+  )
+}
+```
+
+```js
+//
+import React from 'react'
+
+type Buttonprops = {
+  handleClick: (event: React.MouseEvent<HTMLButtonElement>, id: number) => void,
+}
+
+export default function Button(props: Buttonprops) {
+  return (
+    <div>
+      <button onClick={(event) => props.handleClick(event, 1)}>Click</button>
+    </div>
+  )
+}
+```
+
+```js
+import React from "react"
+
+type inputProps = {
+    value : string
+    HandleChange :  (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+export default function Input(props : inputProps) {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event)
+    }
+  return (
+    <div>
+      <input type="text" value={props.value} onChange={handleInputChange}/>
+    </div>
+  )
+}
+```
