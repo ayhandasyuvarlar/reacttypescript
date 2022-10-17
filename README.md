@@ -455,8 +455,7 @@ function Counter() {
 export default Counter
 ```
 
-
-###  useReducer Strict Action Types
+### useReducer Strict Action Types
 
 ```js
 import { useReducer } from 'react'
@@ -506,4 +505,84 @@ export const CounterTwo = () => {
     </>
   )
 }
+```
+
+### useContext Future Value
+
+```js
+import React from 'react'
+import { UserContextProviderText } from './components/Context/UserContext'
+import User from './components/Context/User'
+
+export default function App() {
+  return (
+    <div>
+      <UserContextProviderText>
+        <User />
+      </UserContextProviderText>
+    </div>
+  )
+}
+```
+
+```js
+import React, { useState, createContext } from 'react'
+
+export type AuthUser = {
+  name: string
+  email: string
+}
+type UserContextType = {
+  user: AuthUser | null
+  setUser: React.Dispatch<React.SetStateAction<AuthUser | null>>
+}
+type UserContextProviderProps = {
+  children: React.ReactNode
+}
+export const UserContext = createContext<UserContextType | null>(null)
+
+export const UserContextProviderText = ({
+  children,
+}: UserContextProviderProps) => {
+  const [user, setUser] = useState<AuthUser | null>(null)
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {' '}
+      {children}
+    </UserContext.Provider>
+  )
+}
+
+```
+
+```js
+import { useContext } from 'react'
+import { UserContext } from './UserContext'
+
+const User = () => {
+  const userContext = useContext(UserContext)
+  const handleLogin = () => {
+    if (userContext) {
+      userContext.setUser({
+        name: 'Ayhan',
+        email: 'ayhandasyuvarlar3@gmail.com',
+      })
+    }
+  }
+  const handleLogout = () => {
+    if (userContext) {
+      userContext.setUser(null)
+    }
+  }
+  return (
+    <div>
+      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLogout}>Logout</button>
+      <div>User name is {userContext?.user?.name}</div>
+      <div>User email is {userContext?.user?.email}</div>
+    </div>
+  )
+}
+
+export default User
 ```
