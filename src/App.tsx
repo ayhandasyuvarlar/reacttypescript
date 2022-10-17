@@ -1,10 +1,8 @@
 import React from 'react'
-import { Loggedln } from './components/state/Loggedln'
+import User from './components/state/User'
 
 export default function App() {
-  return (
-    <div>
-      <Loggedln/>
-    </div>
-  )
+  return <div>
+    <User/>
+  </div>
 }
