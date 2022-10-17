@@ -40,3 +40,55 @@ export const Greet = (props: GreetProps) => {
   )
 }
 ```
+
+### Basic Props
+
+```js
+function App() {
+  const nameList = [
+    {
+      first: 'Bruce',
+      last: 'Wayne',
+    },
+    {
+      first: 'Clark',
+      last: 'Kent',
+    },
+    {
+      first: 'Ayhan',
+      last: 'Dasyuvarlar',
+    },
+  ]
+  return (
+    <div className="App">
+      <PersonList names={nameList} />
+    </div>
+  )
+
+  export default App
+}
+//   PersonList
+type PersonListType = {
+  names: {
+    first: string
+    last: string
+  }[]
+}
+
+export default function PersonList(props: PersonListType) {
+  return (
+    <div>
+      {props.names.map((name) => {
+        return (
+          <div key={name.first}>
+            <h2>
+              {name.first} {name.last}
+            </h2>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+```
