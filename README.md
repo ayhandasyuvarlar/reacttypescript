@@ -247,3 +247,78 @@ export default function Container(props: ContainerProps) {
   return <div style={props.styles}>Container</div>
 }
 ```
+
+### Prop Types and Tips
+
+##### Create folder name is types and in this folder create file name is Person.types.ts
+
+### Example One
+
+```js
+// types > Person.types.ts
+export type Name = {
+  first: string
+  last: string
+}
+
+export type personType = {
+    name : Name
+  }
+```
+
+```js
+import { personType } from '../types/Person.types'
+
+export default function Person(props: personType) {
+  return (
+    <div>
+      {props.name.first} {props.name.last}
+    </div>
+  )
+}
+```
+
+```js
+import { Name } from '../types/Person.types'
+
+type PersonListType = {
+  names: Name[],
+}
+
+export default function PersonList(props: PersonListType) {
+  return (
+    <div>
+      {props.names.map((name) => {
+        return (
+          <div key={name.first}>
+            <h2>
+              {name.first} {name.last}
+            </h2>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+```
+
+### Example Two
+
+```js
+import React from "react"
+
+type inputProps = {
+    value : string
+    HandleChange :  (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+export default function Input({value ,HandleChange}:inputProps) {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event)
+    }
+  return (
+    <div>
+      <input type="text" value={value} onChange={HandleChange}/>
+    </div>
+  )
+}
+```
