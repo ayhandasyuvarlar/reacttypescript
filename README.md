@@ -92,3 +92,70 @@ export default function PersonList(props: PersonListType) {
 }
 
 ```
+
+### Advanced Props
+
+```js
+import { Greet } from './components/Greet'
+import Heading from './components/Heading'
+import Oscar from './components/Oscar'
+import { Status } from './components/Status'
+
+function App() {
+  return (
+    <div>
+      <Status status="loading" />
+      <Heading>Oscar goes to leonardo dicpario</Heading>
+      <Oscar>
+        <Heading>hello</Heading>
+      </Oscar>
+      <Greet name="Ayhan" isLoggedIn={true} />
+    </div>
+  )
+}
+
+export default App
+```
+
+```js
+type HeadingProps = {
+  children: string,
+}
+
+const Heading = (props: HeadingProps) => {
+  return <div>{props.children}</div>
+}
+
+export default Heading
+```
+
+```js
+type OscarProps = {
+  children: React.ReactNode,
+}
+
+export default function Oscar(props: OscarProps) {
+  return <div>{props.children}</div>
+}
+```
+
+```js
+type GreetProps = {
+  name: string
+  messageCount?: number
+  isLoggedIn: boolean
+}
+export const Greet = (props: GreetProps) => {
+  const {messageCount = 0} = props
+  return (
+    <div>
+      <h2>
+        {props.isLoggedIn
+          ? `  Welcome ${props.name} ! You have ${messageCount} unread messages`
+          : 'Welcome Guest'}
+      </h2>
+    </div>
+  )
+}
+
+```
