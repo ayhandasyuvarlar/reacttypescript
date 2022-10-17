@@ -1,9 +1,12 @@
 import React from 'react'
-import Counter from './components/state/Counter'
-import { CounterTwo } from './components/state/CounterTwo'
+import { UserContextProviderText } from './components/Context/UserContext'
+import User from './components/Context/User'
+
 
 export default function App() {
   return <div>
-    <Counter/>
+    <UserContextProviderText>
+      <User/>
+    </UserContextProviderText>
   </div>
 }
