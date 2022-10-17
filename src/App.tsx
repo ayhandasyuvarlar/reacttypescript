@@ -1,16 +1,15 @@
 import React from 'react'
-import Button from './components/Button'
-import Input from './components/Input'
+import Container from './components/Container'
 
 export default function App() {
   return (
-    <div>
-      <Button
-        handleClick={(event, id) => {
-          console.log(event, id)
-        }}
-      />
-      <Input value='' HandleChange={(event)=>console.log(event) }/>
-    </div>
+  <>
+   <Container styles={style}/>
+  </>
   )
 }
+const style = {
+  border: "1px solid",
+  width: "20%",
+  height: "250px",
+};
