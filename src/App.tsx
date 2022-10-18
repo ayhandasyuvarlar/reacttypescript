@@ -1,12 +1,11 @@
 import React from 'react'
-import { UserContextProviderText } from './components/Context/UserContext'
-import User from './components/Context/User'
 
+import MutableRef from './components/Ref/MutableRef'
 
 export default function App() {
-  return <div>
-    <UserContextProviderText>
-      <User/>
-    </UserContextProviderText>
-  </div>
+  return (
+    <div>
+      <MutableRef />
+    </div>
+  )
 }
