@@ -845,3 +845,36 @@ export const RandomNumber = ({
 }
 
 ```
+
+### Template Literals and Exclude
+
+```js
+import React from 'react'
+import { Toast } from './components/templateliterals/Toast'
+
+export default function App() {
+  return (
+    <div>
+      <Toast position="center - bottom" />
+    </div>
+  )
+}
+```
+
+```js
+type HorizontalPosition = 'left' | 'center' | 'right'
+type VerticalPosition = 'top' | 'center' | 'bottom'
+
+type ToastProps = {
+  position:Exclude<`${HorizontalPosition} - ${VerticalPosition}` , 'center-center' | 'center'>
+}
+
+export const Toast = ({ position }: ToastProps) => {
+  return (
+    <div>
+      <div>Toast Notification Position :  {position}</div>
+    </div>
+  )
+}
+
+```

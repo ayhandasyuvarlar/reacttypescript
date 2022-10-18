@@ -1,11 +1,12 @@
 import React from 'react'
-import { RandomNumber } from './components/restricting/RandomNumber'
+import { Toast } from './components/templateliterals/Toast'
+
 
 
 export default function App() {
   return (
     <div>
-     <RandomNumber value={-1}  isNegative />
+        <Toast position='center - bottom'/>
     </div>
   )
 }
