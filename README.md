@@ -630,26 +630,26 @@ export default function MutableRef() {
 }
 ```
 
-### Class Component 
+### Class Component
 
 ```js
 import { Component } from 'react'
 
 type CounterProps = {
-  message: string
+  message: string,
 }
 type CounterState = {
-  count: number
+  count: number,
 }
 
 /** The count value is 5 */
 export class Counter extends Component<CounterProps, CounterState> {
   state = {
-    count: 0
+    count: 0,
   }
 
   handleClick = () => {
-    this.setState(e => ({ count: e.count + 1 }))
+    this.setState((e) => ({ count: e.count + 1 }))
   }
   render() {
     return (
@@ -658,5 +658,61 @@ export class Counter extends Component<CounterProps, CounterState> {
         {this.props.message} {this.state.count}
       </div>
     )
-  }}
+  }
+}
+```
+
+### Components Prop
+
+#### Props are argumants passed into React components Props are passed to components via HTML attribues props stands for properties
+
+```js
+import React from 'react'
+
+export const Login = () => {
+  return <div>Please Login to contine</div>
+}
+```
+
+```js
+export type ProfileProps = {
+  name: string,
+}
+
+export const Profile = ({ name }: ProfileProps) => {
+  return <div>Private Profile component Name is {name}</div>
+}
+```
+
+```js
+import { Login } from './Login'
+import { ProfileProps } from './Profile'
+type PrivateProps = {
+  isLoggedIn: boolean
+  component: React.ComponentType<ProfileProps>
+}
+
+export const Private = ({ isLoggedIn, component : Component}: PrivateProps) => {
+  if (isLoggedIn) {
+    return <Component name="ayhan" />
+  } else {
+    return <Login />
+  }
+}
+
+```
+
+```js
+import React from 'react'
+import { Login } from './components/auth/Login'
+import { Private } from './components/auth/Private'
+import { Profile } from './components/auth/Profile'
+
+export default function App() {
+  return (
+    <div>
+      <Private isLoggedIn={true} component={Profile} />
+    </div>
+  )
+}
 ```
