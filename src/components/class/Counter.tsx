@@ -14,7 +14,7 @@ export class Counter extends Component<CounterProps, CounterState> {
   }
 
   handleClick = () => {
-    this.setState(a => ({ count: a.count + 1 }))
+    this.setState(prevState => ({ count: prevState.count + 1 }))
   }
   render() {
     return (
@@ -23,4 +23,5 @@ export class Counter extends Component<CounterProps, CounterState> {
         {this.props.message} {this.state.count}
       </div>
     )
-  }}
+  }
+}
