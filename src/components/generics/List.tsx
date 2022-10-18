@@ -4,7 +4,7 @@ type ListProps<T> = {
   styles : React.CSSProperties
 }
 
-export const List = <T extends { id: number; first: string; last: string }>({
+export const List = <T extends { id: number; first: string; last: string } >({
   items,
   onClick,
   styles
