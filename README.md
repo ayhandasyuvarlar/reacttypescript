@@ -716,3 +716,79 @@ export default function App() {
   )
 }
 ```
+
+### Generic Props
+
+```js
+import React from 'react'
+import { List } from './components/generics/List'
+
+export default function App() {
+  return (
+    <div>
+      <List
+        styles={styles}
+        items={[
+          {
+            id: 1,
+            first: 'ayhan',
+            last: 'Dasyuvarlar',
+          },
+          {
+            id: 2,
+            first: 'ayhan',
+            last: 'Dasyuvarlar',
+          },
+          {
+            id: 3,
+            first: 'ayhan',
+            last: 'Dasyuvarlar',
+          },
+        ]}
+        onClick={(item) => {
+          console.log(item)
+        }}
+      />
+    </div>
+  )
+}
+
+const styles = {
+  border: '1px solid',
+  width: '200px',
+  height: '50px',
+}
+```
+
+```js
+type ListProps<T> = {
+  items: T[]
+  onClick: (value: T) => void
+  styles : React.CSSProperties
+}
+
+export const List = <T extends { id: number; first: string; last: string }>({
+  items,
+  onClick,
+  styles
+}: ListProps<T>) => {
+  return (
+    <div>
+      <h2>List of items</h2>
+      {items.map((item) => {
+        return (
+          <div
+            key={item.id}
+            onClick={() => onClick(item)}
+            style={styles}
+          >
+            firstName : {item.first} <br />
+            lastName : {item.last}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+```
