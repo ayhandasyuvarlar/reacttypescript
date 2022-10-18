@@ -10,16 +10,18 @@ type CounterState = {
 /** The count value is 5 */
 export class Counter extends Component<CounterProps, CounterState> {
   state = {
-    count: 0
+    count: 0,
   }
 
-  handleClick = () => {
-    this.setState(prevState => ({ count: prevState.count + 1 }))
+  handleClick = (amd: number) => {
+    this.setState((prevState) => ({
+      count: prevState.count + amd,
+    }))
   }
   render() {
     return (
       <div>
-        <button onClick={this.handleClick}>Increment</button>
+        <button onClick={() => this.handleClick(1)}>Increment</button>
         {this.props.message} {this.state.count}
       </div>
     )
