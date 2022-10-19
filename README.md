@@ -878,3 +878,80 @@ export const Toast = ({ position }: ToastProps) => {
 }
 
 ```
+
+### Wrapping HTML Elements
+
+```js
+import React from 'react'
+import './App.css'
+import { CustomButton } from './components/html/Button'
+
+function App() {
+  return (
+    <div>
+      <CustomButton
+        variant="primary"
+        onClick={() => {
+          console.log('clicked')
+        }}
+        children={'asasd'}
+      />
+    </div>
+  )
+}
+export default App
+```
+
+```js
+type ButtonProps = {
+  variant: 'primary' | 'secondary'
+  children: string
+} & Omit<React.ComponentProps<'button'>, 'children'>
+
+export const CustomButton = ({ variant, children, ...rest }: ButtonProps) => {
+  return (
+    <button className={`class-with-${variant}`} {...rest}>
+      {children}
+    </button>
+  )
+}
+
+```
+
+```js
+type InputProps = React.ComponentProps<'input'>
+
+const Input = (props: InputProps) => {
+  return <input type="text" {...props} />
+}
+
+export default Input
+```
+
+### Extracting a Components Prop Types
+
+```js
+import React from 'react'
+import CustomComponent from './components/html/CustomComponent'
+
+function App() {
+  return (
+    <div>
+      <CustomComponent name="hello" isLoggedIn={true} />
+    </div>
+  )
+}
+
+export default App
+```
+
+```js
+import React from 'react'
+import { Greet } from '../Greet'
+
+const CustomComponent = (props: React.ComponentProps<typeof Greet>) => {
+  return <div>{props.name}</div>
+}
+
+export default CustomComponent
+```

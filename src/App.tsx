@@ -1,13 +1,10 @@
 import React from 'react'
-import { Toast } from './components/templateliterals/Toast'
+import CustomComponent from './components/html/CustomComponent'
 
-
-
-export default function App() {
-  return (
-    <div>
-        <Toast position='center - bottom'/>
-    </div>
-  )
+function App() {
+  return <div>
+    <CustomComponent name='hello' isLoggedIn ={true}/>
+  </div>
 }
 
+export default App
