@@ -1005,3 +1005,70 @@ export const Text = <E extends React.ElementType = 'div'>({
   )
 }
 ```
+
+### Polymorphic Components
+
+```js
+import { Text } from './components/polymorphic/Text'
+
+function App() {
+  return (
+    <div>
+      <Text as={'h1'} size="lg">
+        sadsad
+      </Text>
+      <Text as={'label'} size="md">
+        sadsad
+      </Text>
+      <Text as={'p'} size="sm" color="secondary">
+        sadsad
+      </Text>
+    </div>
+  )
+}
+
+export default App
+```
+
+```js
+import React from 'react'
+
+type TextOwnProps<E extends React.ElementType> = {
+  size?: 'sm' | 'md' | 'lg'
+  color?: 'primary' | 'secondary'
+  children: React.ReactNode
+  as?: E
+}
+
+type TextProps<E extends React.ElementType> = TextOwnProps<E> &
+  Omit<React.ComponentProps<E>, keyof TextOwnProps<E>>
+
+export const Text = <E extends React.ElementType = 'div'>({
+  size,
+  color,
+  children,
+  as
+}: TextProps<E>) => {
+  const Component = as || 'div'
+  return (
+    <Component className={`class-with-${size}-${color}`}>{children}</Component>
+  )
+}
+```
+
+### Course Summary
+
+- Basic & Advanced Props
+- Events & Styles
+- useState
+- useReducer
+- Context Apı
+- useRef
+- Class Components
+- Component as Props
+- Generics
+- Restericting Props
+- Template Literals and Exclude
+- Wrapping HTML & Omit
+- Extracıng Component prop types
+- Polymorphic Component
